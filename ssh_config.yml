@@ -1,0 +1,11 @@
+- hosts: '{{ target }}'
+  gather_facts: true
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Change content of sshd
+    shell: sed -i s/'PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_conf;systemctl restart sshd
+    become: yes
+    become_user: root
+
